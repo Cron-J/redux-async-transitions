@@ -1,0 +1,25 @@
+{
+  "name": "redux-async-transitions",
+  "version": "0.1.0",
+  "description": "redux + async + transition",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sureshvarman/redux-async-transitions.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "async",
+    "transition"
+  ],
+  "author": "suresh varman <sureshvarman91@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sureshvarman/redux-async-transitions/issues"
+  },
+  "homepage": "https://github.com/sureshvarman/redux-async-transitions"
+}
