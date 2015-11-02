@@ -59,13 +59,32 @@ exports['default'] = function(history) {
           if (types) {
             var onSuccess = null;
             var onFail = null;
+            var onPending = null;
 
             var metaFunction = meta && meta.transition ? meta.transition(store.getState(), action) : null;
             onSuccess = metaFunction && metaFunction.onSuccess ? metaFunction.onSuccess : null;
             onFail = metaFunction && metaFunction.onFail ? metaFunction.onFail : null;
+            onPending = metaFunction && metaFunction.onPending ? metaFunction.onPending : null;
 
             if (!types || !hasPromiseProps(action.payload)) {
               return store.dispatch(action);
+            }
+
+            if (onPending) {
+              var onPendingData = onPending();
+              var func = onPendingData.func;
+              var path = onPendingData.path;
+              if (func)
+                store.dispatch(func());
+
+              if (path) {
+                var query = onPendingData.query;
+                var replace = onPendingData.replace;
+                var state = onPendingData.state;
+
+                var method = replace ? 'replaceState' : 'pushState';
+                history[method](state, path, query);
+              }
             }
 
             var actionProperties = getActionObjects(action);
@@ -86,13 +105,19 @@ exports['default'] = function(history) {
                 var successData = onSuccess(results);
                 if (successData) {
                   var path = successData.path;
-                  var query = successData.query;
-                  var replace = successData.replace;
-                  var state = successData.state;
+                  var func = successData.func;
 
-                  var method = replace ? 'replaceState' : 'pushState';
+                  if (func)
+                    store.dispatch(func());
 
-                  history[method](state, path, query);
+                  if (path) {
+                    var query = successData.query;
+                    var replace = successData.replace;
+                    var state = successData.state;
+
+                    var method = replace ? 'replaceState' : 'pushState';
+                    history[method](state, path, query);
+                  }
                 }
               } else {
                 store.dispatch(actionProperties);
@@ -106,13 +131,20 @@ exports['default'] = function(history) {
                 var failData = onFail(error);
                 if (failData) {
                   var path = failData.path;
-                  var query = failData.query;
-                  var replace = failData.replace;
-                  var state = failData.state;
+                  var func = failData.func;
 
-                  var method = replace ? 'replaceState' : 'pushState';
+                  if (func)
+                    store.dispatch(func());
 
-                  history[method](state, path, query);
+                  if (path) {
+                    var query = failData.query;
+                    var replace = failData.replace;
+                    var state = failData.state;
+
+                    var method = replace ? 'replaceState' : 'pushState';
+
+                    history[method](state, path, query);
+                  }
                 }
               } else {
                 return store.dispatch(actionProperties);
@@ -128,13 +160,20 @@ exports['default'] = function(history) {
 
             if (transitionData) {
               var path = transitionData.path;
-              var query = transitionData.query;
-              var replace = transitionData.replace;
-              var state = transitionData.state;
+              var func = transitionData.func;
 
-              var method = replace ? 'replaceState' : 'pushState';
+              if (func)
+                store.dispatch(func());
 
-              history[method](state, path, query);
+              if (path) {
+                var query = transitionData.query;
+                var replace = transitionData.replace;
+                var state = transitionData.state;
+
+                var method = replace ? 'replaceState' : 'pushState';
+
+                history[method](state, path, query);
+              }
             }
 
             return action;
