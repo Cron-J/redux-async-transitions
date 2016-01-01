@@ -13,13 +13,6 @@ var hasPromiseProps = function hasPromiseProps(obj) {
   });
 };
 
-var isKeyValid = function(key) {
-  if (key == 'payload' || key == 'type' || key == 'types')
-  return false;
-
-  return true;
-}
-
 var resolveProps = function resolveProps(obj) {
   var props = Object.keys(obj);
   var values = props.map(function (prop) {
@@ -44,7 +37,13 @@ var getNonPromiseProperties = function getNonPromiseProperties(obj) {
 };
 
 var getActionObjects = function getActionObjects(obj) {
-  return Object.keys(obj).filter(isKeyValid);
+  var actionObject = {};
+  for (var key in obj) {
+    if (key != 'payload' && key != 'type' && key != 'types') {
+      actionObject[key] = obj[key];
+    }
+  }
+  return actionObject;
 };
 
 var dispatcher = function dispatcher(action, store, history) {
