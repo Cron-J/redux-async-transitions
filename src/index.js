@@ -136,7 +136,7 @@ var dispatcher = function dispatcher(action, store, history) {
             var replace = failData.replace;
             var state = failData.state;
 
-            var method = replace ? 'replace' : 'push';
+            var method = replace ? 'replaceState' : 'pushState';
 
             history[method](state, path, query);
           }
