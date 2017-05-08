@@ -75,10 +75,9 @@ var dispatcher = function dispatcher(action, store, history) {
       if (path) {
         var query = onPendingData.query;
         var replace = onPendingData.replace;
-        var state = onPendingData.state;
 
         var method = replace ? 'replace' : 'push';
-        history[method](state, path, query);
+        history[method]({pathname: path, query: query});
       }
     }
 
@@ -108,10 +107,9 @@ var dispatcher = function dispatcher(action, store, history) {
           if (path) {
             var query = successData.query;
             var replace = successData.replace;
-            var state = successData.state;
 
-            var method = replace ? 'replaceState' : 'pushState';
-            history[method](state, path, query);
+            var method = replace ? 'replace' : 'push';
+            history[method]({pathname: path, query: query});
           }
         }
       } else {
@@ -134,11 +132,10 @@ var dispatcher = function dispatcher(action, store, history) {
           if (path) {
             var query = failData.query;
             var replace = failData.replace;
-            var state = failData.state;
 
-            var method = replace ? 'replaceState' : 'pushState';
+            var method = replace ? 'replace' : 'push';
 
-            history[method](state, path, query);
+            history[method]({pathname: path, query: query});
           }
         }
       } else {
@@ -163,11 +160,10 @@ var dispatcher = function dispatcher(action, store, history) {
       if (path) {
         var query = transitionData.query;
         var replace = transitionData.replace;
-        var state = transitionData.state;
 
-        var method = replace ? 'replaceState' : 'pushState';
+        var method = replace ? 'replace' : 'push';
 
-        history[method](state, path, query);
+        history[method]({pathname: path, query: query});
       }
     }
 
