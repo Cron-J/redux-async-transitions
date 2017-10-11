@@ -3,13 +3,13 @@ test:
     override:
         - npm run test
         - npm run test-coverage
+    post:
+        - sudo mkdir $CIRCLE_TEST_REPORTS/junit
+        - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
 
 dependencies:
     pre:
         - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
-    post:
-        - sudo mkdir $CIRCLE_TEST_REPORTS/junit
-        - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
 
 deployment:
     branch:
