@@ -4,7 +4,7 @@
   "description": "redux + async + transition",
   "main": "./src/index.js",
   "scripts": {
-    "test-raw": "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
+    "test-raw": "npm run clean && ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
     "test": "npm run clean && ./node_modules/.bin/nyc ./node_modules/.bin/mocha --compilers js:babel-core/register --timeout 500000 -R mocha-junit-reporter",
     "clean": "./node_modules/.bin/rimraf coverage .nyc_output test-results.xml",
     "test-coverage": "./node_modules/.bin/nyc --reporter=lcov ./node_modules/.bin/mocha --compilers js:babel-core/register --timeout 500000",
