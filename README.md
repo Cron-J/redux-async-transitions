@@ -1,9 +1,9 @@
 # redux-async-transitions
 
-master: [![Coverage Status](https://coveralls.io/repos/github/Cron-J/redux-async-transitions/badge.svg?branch=master&rand=2)](https://coveralls.io/github/Cron-J/redux-async-transitions?branch=testcases)
-master: ![Build status](https://circleci.com/gh/Cron-J/redux-async-transitions.svg?style=shield&circle-token=2af086334169ec17079328a68e02ec2d001c806b)
+[![Coverage Status](https://coveralls.io/repos/github/Cron-J/redux-async-transitions/badge.svg?branch=master&rand=2)](https://coveralls.io/github/Cron-J/redux-async-transitions?branch=testcases)
+![Build status](https://circleci.com/gh/Cron-J/redux-async-transitions/tree/master.svg?style=shield&circle-token=2af086334169ec17079328a68e02ec2d001c806b)
 
-This project is a combination of following two project along with features included
+This module is a combination of following two modules along with features included
 <a href="https://github.com/symbiont-io/redux-async"> redux-async </a> and <a href="https://github.com/johanneslumpe/redux-history-transitions"> redux-history-transition </a>
 
 thanks to the author

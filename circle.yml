@@ -12,4 +12,6 @@ deployment:
     branch:
         master:
             - npm run upload-coverage #temporary
+            - npm run tag
+            - git push --tags
             - npm publish
