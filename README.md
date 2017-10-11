@@ -1,7 +1,7 @@
 # redux-async-transitions
 
 [![Coverage Status](https://coveralls.io/repos/github/Cron-J/redux-async-transitions/badge.svg?branch=testcases&rand=2)](https://coveralls.io/github/Cron-J/redux-async-transitions?branch=testcases)
-![Build status](https://circleci.com/gh/Cron-J/redux-async-transitions.svg?style=shield&circle-token=2e3e2b7b174d781d2bf12a3fd2db7b1bb2385d03)
+![Build status](https://circleci.com/gh/Cron-J/redux-async-transitions.svg?style=shield&circle-token=2af086334169ec17079328a68e02ec2d001c806b)
 
 This project is a combination of following two project along with features included
 <a href="https://github.com/symbiont-io/redux-async"> redux-async </a> and <a href="https://github.com/johanneslumpe/redux-history-transitions"> redux-history-transition </a>
