@@ -1,0 +1,20 @@
+# ovverride test code
+test:
+    override:
+        - npm run test
+        - npm run test-coverage
+    post:
+        - sudo mkdir $CIRCLE_TEST_REPORTS/junit
+        - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
+
+dependencies:
+    pre:
+        - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
+
+deployment:
+    branch:
+        master:
+            - npm run upload-coverage #temporary
+            - npm run tag
+            - git push --tags
+            - npm publish
