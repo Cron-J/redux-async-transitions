@@ -1,6 +1,6 @@
 {
   "name": "redux-async-transitions",
-  "version": "0.2.0",
+  "version": "0.1.4",
   "description": "redux + async + transition",
   "main": "./src/index.js",
   "scripts": {
