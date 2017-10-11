@@ -1,4 +1,9 @@
 # ovverride test code
+
+dependencies:
+    pre:
+        - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
+
 test:
     override:
         - npm run test
@@ -7,15 +12,11 @@ test:
         - sudo mkdir $CIRCLE_TEST_REPORTS/junit
         - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
 
-dependencies:
-    pre:
-        - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
-
 deployment:
     npm:
         branch: master
-            commands:
-                - npm run upload-coverage #temporary
-                - npm run tag
-                - git push --tags
-                - npm publish
+        commands:
+            - npm run upload-coverage #temporary
+            - npm run tag
+            - git push --tags
+            - npm publish
