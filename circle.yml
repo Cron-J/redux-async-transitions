@@ -1,4 +1,5 @@
 # ovverride test code
 test:
     override:
-        - npm run test
+        - npm run test-coverage
+        - npm run upload-coverage #temporary
