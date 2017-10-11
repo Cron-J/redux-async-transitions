@@ -1,6 +1,6 @@
 # redux-async-transitions
 
-[![Coverage Status](https://coveralls.io/repos/github/Cron-J/redux-async-transitions/badge.svg?branch=master&rand=2)](https://coveralls.io/github/Cron-J/redux-async-transitions?branch=testcases)
+[![Coverage Status](https://coveralls.io/repos/github/Cron-J/redux-async-transitions/badge.svg?branch=testcases&rand=2)](https://coveralls.io/github/Cron-J/redux-async-transitions?branch=testcases)
 ![Build status](https://circleci.com/gh/Cron-J/redux-async-transitions.svg?style=shield&circle-token=2e3e2b7b174d781d2bf12a3fd2db7b1bb2385d03)
 
 This project is a combination of following two project along with features included
