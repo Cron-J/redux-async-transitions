@@ -1,0 +1,4 @@
+# ovverride test code
+test:
+    override:
+        - npm run test

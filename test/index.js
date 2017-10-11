@@ -324,7 +324,6 @@ describe('redux-async-transitions', () =>
                 }
             });
 
-
             const unlisten = history.listen((location, action) => {
                 expect(location.search).toEqual('?someKey=someValue&someTest=someTest1');
                 expect(location.pathname).toEqual(transitionPath);
@@ -351,16 +350,112 @@ describe('redux-async-transitions', () =>
             });
         });
 
-        // async with onSuccess transition
+        // async with onSucess transition
         it('Async with onSuccess transition', (done) =>
         {
-            done();
+            const data = {test: 'test1'};
+            const successData = {test: 'Result is recieved'};
+            const transitionPath = '/some/path';
+            const query = {someKey: 'someValue', someTest: 'someTest1'};
+
+            const samplePromise = () =>
+            {
+                return new Promise((resolve, reject) =>
+                {
+                    setTimeout(() =>
+                    {
+                        resolve(successData);
+                    });
+                });
+            }
+
+            let reducer = createReducer({}, {
+                ["SOMETHING_RESOVLED"](state, action) {
+                    expect(action.payload.response).toEqual(successData);
+                    return {
+                        test: action.payload.response.test
+                    }
+                }
+            });
+
+            const unlisten = history.listen((location, action) => {
+                expect(location.search).toEqual('?someKey=someValue&someTest=someTest1');
+                expect(location.pathname).toEqual(transitionPath);
+                unlisten();
+                done();
+            });
+
+            const store = getStore(reducer, {});
+
+            store.dispatch({
+                types: ['SOMETHING_HAPPENED', 'SOMETHING_RESOVLED', 'SOMETHING_REJECTED'],
+                payload: {
+                    test: data.test,
+                    response: samplePromise()
+                },
+                meta: {
+                    transition: () => ({
+                        onSuccess: () => ({
+                            path : transitionPath,
+                            query: query
+                        })
+                    })
+                }
+            });
         });
 
         // async with onFail transition
         it('Async with onFail transition', (done) =>
         {
-            done();
+            const data = {test: 'test1'};
+            const faileData = {test: 'Result is recieved'};
+            const transitionPath = '/some/path';
+            const query = {someKey: 'someValue', someTest: 'someTest1'};
+
+            const samplePromise = () =>
+            {
+                return new Promise((resolve, reject) =>
+                {
+                    setTimeout(() =>
+                    {
+                        reject(faileData);
+                    });
+                });
+            }
+
+            let reducer = createReducer({}, {
+                ["SOMETHING_REJECTED"](state, action) {
+                    expect(action.payload).toEqual(faileData);
+                    return {
+                        test: action.payload.test
+                    }
+                }
+            });
+
+            const unlisten = history.listen((location, action) => {
+                expect(location.search).toEqual('?someKey=someValue&someTest=someTest1');
+                expect(location.pathname).toEqual(transitionPath);
+                unlisten();
+                done();
+            });
+
+            const store = getStore(reducer, {});
+
+            store.dispatch({
+                types: ['SOMETHING_HAPPENED', 'SOMETHING_RESOVLED', 'SOMETHING_REJECTED'],
+                payload: {
+                    test: data.test,
+                    response: samplePromise()
+                },
+                meta: {
+                    transition: () => ({
+                        onFail: () => ({
+                            path : transitionPath,
+                            query: query
+                        })
+                    })
+                }
+            });
         });
     });
 });
