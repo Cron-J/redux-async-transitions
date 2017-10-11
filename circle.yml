@@ -1,5 +1,15 @@
 # ovverride test code
 test:
     override:
+        - npm run test
         - npm run test-coverage
-        - npm run upload-coverage #temporary
+
+dependencies:
+    pre:
+        - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login
+
+deployment:
+    branch:
+        master:
+            - npm run upload-coverage #temporary
+            - npm publish
