@@ -5,9 +5,9 @@
   "main": "./src/index.js",
   "scripts": {
     "test-raw": "npm run clean && ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
-    "test-coverage": "npm run clean && ./node_modules/.bin/nyc ./node_modules/.bin/mocha --compilers js:babel-core/register --timeout 500000 -R mocha-junit-reporter",
+    "test-coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha --compilers js:babel-core/register --timeout 500000 -R mocha-junit-reporter",
     "clean": "./node_modules/.bin/rimraf coverage .nyc_output test-results.xml",
-    "test": "./node_modules/.bin/nyc --reporter=lcov ./node_modules/.bin/mocha --compilers js:babel-core/register --timeout 500000",
+    "test": "npm run clean && ./node_modules/.bin/nyc --reporter=lcov ./node_modules/.bin/mocha --compilers js:babel-core/register --timeout 500000",
     "upload-coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tag": "git tag 1.0.6"
   },
