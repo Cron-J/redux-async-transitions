@@ -11,12 +11,12 @@ test:
     post:
         - sudo mkdir $CIRCLE_TEST_REPORTS/junit
         - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
+        - npm run upload-coverage
 
 deployment:
     npm:
         branch: master
         commands:
-            - npm run upload-coverage #temporary
             - npm run tag
             - git push --tags
             - npm publish
