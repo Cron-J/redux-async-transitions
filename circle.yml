@@ -17,4 +17,4 @@ deployment:
     npm:
         branch: master
         commands:
-            - if [[ `git log -1 --pretty=%B` == *'[deploy skip]'* ]]; then echo 'Skipping deployment'; else npm run tag && git push --tags && npm publish
+            - if [[ `git log -1 --pretty=%B` == *'[deploy1 skip]'* ]]; then echo 'Skipping deployment'; else npm run tag && git push --tags && npm publish; fi
