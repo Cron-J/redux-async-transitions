@@ -11,10 +11,10 @@ test:
     post:
         - sudo mkdir $CIRCLE_TEST_REPORTS/junit
         - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
-        - npm run upload-coverage
 
 deployment:
     npm:
         branch: master
         commands:
-            - if [[ `git log -1 --pretty=%B` == *'[deploy1 skip]'* ]]; then echo 'Skipping deployment'; else npm run tag && git push --tags && npm publish; fi
+            - npm run upload-coverage
+            - if [[ `git log -1 --pretty=%B` == *'[deploy skip]'* ]]; then echo 'Skipping deployment'; else npm run tag && git push --tags && npm publish; fi
