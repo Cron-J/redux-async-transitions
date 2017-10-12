@@ -50,7 +50,7 @@ var dispatcher = function dispatcher(action, store, history) {
     var types = action.types;
     var payload = action.payload;
     var meta = action.meta;
-    if (types) {
+    if (types || hasPromiseProps(action.payload)) {
         var onSuccess = null;
         var onFail = null;
         var onPending = null;
@@ -59,10 +59,6 @@ var dispatcher = function dispatcher(action, store, history) {
         onSuccess = metaFunction && metaFunction.onSuccess ? metaFunction.onSuccess : null;
         onFail = metaFunction && metaFunction.onFail ? metaFunction.onFail : null;
         onPending = metaFunction && metaFunction.onPending ? metaFunction.onPending : null;
-
-        if (!types || !hasPromiseProps(action.payload)) {
-            return store.dispatch(action);
-        }
 
         if (onPending) {
             var onPendingData = onPending();
@@ -103,6 +99,7 @@ var dispatcher = function dispatcher(action, store, history) {
         return resolveProps(payload).then(function (results) {
             actionProperties.type = RESOLVED;
             actionProperties.payload = _extends({}, results);
+
             if (onSuccess) {
                 store.dispatch(actionProperties);
                 var successData = onSuccess(results);

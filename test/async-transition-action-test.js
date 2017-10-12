@@ -117,7 +117,7 @@ module.exports = function(getStore, history)
                 },
                 meta: {
                     transition: () => ({
-                        onPending: () => ({
+                        onSuccess: () => ({
                             path : transitionPath,
                             query: query,
                             func: () => {
@@ -181,7 +181,7 @@ module.exports = function(getStore, history)
                 },
                 meta: {
                     transition: () => ({
-                        onPending: () => ({
+                        onFail: () => ({
                             path : transitionPath,
                             query: query,
                             func: () => {
